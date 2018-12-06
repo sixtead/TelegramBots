@@ -3,12 +3,22 @@
  */
 package telegrambots;
 
+import org.telegram.telegrambots.ApiContextInitializer;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
+
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        //        Initialize Api Context
+        ApiContextInitializer.init();
+//        Instantiate Telegram Bots Api
+        TelegramBotsApi botsApi = new TelegramBotsApi();
+//        Register bot
+        try {
+            botsApi.registerBot(new JoyReactorBot());
+        } catch (TelegramApiRequestException e) {
+            e.printStackTrace();
+        }
     }
 }
