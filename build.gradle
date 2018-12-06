@@ -31,3 +31,7 @@ dependencies {
 
 // Define the main class for the application
 mainClassName = 'telegrambots.App'
+
+// Custom tasks
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
